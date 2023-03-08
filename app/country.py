@@ -19,6 +19,21 @@ def getcountries():
 
     return jsonify(data)
 
+def getcountrybycontinent(continent):
+    results = services.countrybycontinent(continent)
+
+    data = []
+    for row in results:
+        data.append({
+            "CountryId" : row[0],
+            "Name" : row[1],
+            "Population"  : row[2],
+            "Continent" : row[3]
+        })
+
+
+    return jsonify(data)
+
 
 def createcountry(data):
     services.createcountry(data)

@@ -14,6 +14,10 @@ app = Flask(__name__)
 def getallcountries():
     return country.getcountries()
 
+@app.route('/countries/<continent>')
+def getcountrybyitscontinent(continent):
+    return country.getcountrybycontinent(continent)
+
 #create a country
 @app.route('/countries', methods=['POST'])
 def createnewcountry():
