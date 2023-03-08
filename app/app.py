@@ -19,6 +19,16 @@ def createnewcountry():
     data = request.json
     return country.createcountry(data)
 
+#delete
+@app.route('/countries/<int:countryid>', methods=['DELETE'])
+def deletecountrybyid(countryid):
+    return country.deletecountry(countryid)
+
+#UPDATE country
+@app.route('/countries/<int:countryid>', methods=['PUT'])
+def updatecountrybyid(countryid):
+    return country.updatecountry(countryid)
+
 
 #Execute on the terminal
 if __name__ == '__main__':

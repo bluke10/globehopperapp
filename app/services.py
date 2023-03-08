@@ -39,3 +39,27 @@ def createcountry(data):
     #close connection
     mycursor.close()
     conn.myconn.close()
+
+
+def deletecountry(countryid):
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #execute sql
+    mysql = "DELETE FROM Country WHERE CountryId = %s;"
+    mycursor.execute(mysql, [countryid])
+
+    mycursor.close()
+    conn.myconn.close()
+
+
+def updatecountry(countryid):
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #execute sql
+    mysql = "UPDATE Country SET CountryId = %s;"
+    mycursor.execute(mysql, [countryid])
+
+    mycursor.close()
+    conn.myconn.close()
