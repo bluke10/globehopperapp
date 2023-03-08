@@ -19,6 +19,7 @@ def createnewcountry():
     data = request.json
     return country.createcountry(data)
 
+
 #Execute on the terminal
 if __name__ == '__main__':
     app.run()
