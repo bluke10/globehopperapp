@@ -21,6 +21,21 @@ def allcountries():
     conn.myconn.close()
     return results
 
+#Gets all records from City table using SQL
+def allcities():
+    #open connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #execute SQL
+    mycursor.execute("SELECT * FROM City")
+    results = mycursor.fetchall()
+
+    #close connection
+    mycursor.close()
+    conn.myconn.close()
+    return results
+
 
 def createcountry(data):
     #open connection
@@ -41,6 +56,45 @@ def createcountry(data):
     conn.myconn.close()
 
 
+def createcity(data):
+    #open connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    cityid = data['CityId']
+    name = data['Name']
+    countryid = data['CountryId']
+    capital = data['Capital']
+    firstlandmark = data['FirstLandmark']
+    secondlandmark = data['SecondLandmark']
+    thirdlandmark = data['ThirdLandmark']
+    
+    #execute SQL
+    mysql = "INSERT INTO City (CityId, Name, CountryId, Capital, FirstLandmark, SecondLandmark, ThirdLandmark) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+    values = (cityid, name, countryid, capital, firstlandmark, secondlandmark, thirdlandmark)
+    mycursor.execute(mysql, values)
+
+    #close connection
+    mycursor.close()
+    conn.myconn.close()
+
+def updatecountry(country_id, data):
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    countryid = data['CountryId']
+    name = data['Name']
+    population = data['Population']
+    continent = data['Continent']
+    values = (countryid, name, population, continent, country_id)
+    #execute sql
+    mysql = "UPDATE Country SET CountryId = %s, Name = %s, Population = %s, Continent = %s WHERE CountryId = %s;"
+    mycursor.execute(mysql, values)
+
+    mycursor.close()
+    conn.myconn.close()
+
+
 def deletecountry(countryid):
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
@@ -53,13 +107,3 @@ def deletecountry(countryid):
     conn.myconn.close()
 
 
-def updatecountry(countryid):
-    conn.myconn._open_connection()
-    mycursor = conn.myconn.cursor()
-
-    #execute sql
-    mysql = "UPDATE Country SET CountryId = %s;"
-    mycursor.execute(mysql, [countryid])
-
-    mycursor.close()
-    conn.myconn.close()

@@ -3,6 +3,7 @@
 
 from flask import Flask, request, jsonify
 import country
+import city
 
 #Using Flask framework
 
@@ -27,7 +28,20 @@ def deletecountrybyid(countryid):
 #UPDATE country
 @app.route('/countries/<int:countryid>', methods=['PUT'])
 def updatecountrybyid(countryid):
-    return country.updatecountry(countryid)
+    data = request.json
+    return country.updatecountry(countryid,data)
+
+
+#Read all cities
+@app.route('/cities')
+def getallcities():
+    return city.getcities()
+
+#create a city
+@app.route('/cities', methods=['POST'])
+def createnewcity():
+    data = request.json
+    return city.createcity(data)
 
 
 #Execute on the terminal
