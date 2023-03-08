@@ -20,3 +20,22 @@ def allCountries():
     mycursor.close()
     conn.myconn.close()
     return results
+
+
+def createCountry(data):
+    #open connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    countryId = data['CountryId']
+    name = data['Name']
+    population = data['Population']
+    continent = data['Continent']
+    #execute SQL
+    mysql = "INSERT INTO Country (CountryId, Name, Population, Continent) VALUES (%s,%s,%s,%s);"
+    values = (countryId, name, population, continent)
+    mycursor.execute(mysql, values)
+
+    #close connection
+    mycursor.close()
+    conn.myconn.close()

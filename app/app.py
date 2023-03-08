@@ -7,12 +7,16 @@ import country
 #Using Flask framework
 app = Flask(__name__)
 
-#Read
-
+#Read all countries
 @app.route('/countries')
 def getAllCountries():
     return country.getCountries()
 
+#create a country
+@app.route('/countries', methods=['POST'])
+def createNewCountry():
+    data = request.json
+    return country.createCountry(data)
 
 #Execute on the terminal
 if __name__ == '__main__':
