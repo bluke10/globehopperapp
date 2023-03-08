@@ -106,4 +106,14 @@ def deletecountry(countryid):
     mycursor.close()
     conn.myconn.close()
 
+def deletecity(cityid):
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #execute sql
+    mysql = "DELETE FROM City WHERE CityId = %s;"
+    mycursor.execute(mysql, [cityid])
+
+    mycursor.close()
+    conn.myconn.close()
 

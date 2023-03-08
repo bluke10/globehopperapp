@@ -43,6 +43,12 @@ def createnewcity():
     data = request.json
     return city.createcity(data)
 
+#delete
+@app.route('/cities/<int:cityid>', methods=['DELETE'])
+def deletecitybyid(cityid):
+    return city.deletecity(cityid)
+
+
 
 #Execute on the terminal
 if __name__ == '__main__':
