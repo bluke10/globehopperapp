@@ -94,6 +94,25 @@ def updatecountry(country_id, data):
     mycursor.close()
     conn.myconn.close()
 
+def updatecity(city_id, data):
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    cityid = data['CityId']
+    name = data['Name']
+    countryid = data['CountryId']
+    capital = data['Capital']
+    firstlandmark = data['FirstLandmark']
+    secondlandmark = data['SecondLandmark']
+    thirdlandmark = data['ThirdLandmark']
+    values = (cityid, name, countryid, capital, firstlandmark, secondlandmark, thirdlandmark, city_id)
+    #execute sql
+    mysql = "UPDATE City SET CityId = %s, Name = %s, CountryId = %s, Capital = %s, FirstLandmark = %s, SecondLandmark = %s, ThirdLandmark = %s WHERE CityId = %s;"
+    mycursor.execute(mysql, values)
+
+    mycursor.close()
+    conn.myconn.close()
+
 
 def deletecountry(countryid):
     conn.myconn._open_connection()
@@ -113,7 +132,6 @@ def deletecity(cityid):
     #execute sql
     mysql = "DELETE FROM City WHERE CityId = %s;"
     mycursor.execute(mysql, [cityid])
-
     mycursor.close()
     conn.myconn.close()
 

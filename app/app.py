@@ -48,7 +48,11 @@ def createnewcity():
 def deletecitybyid(cityid):
     return city.deletecity(cityid)
 
-
+#UPDATE country
+@app.route('/cities/<int:cityid>', methods=['PUT'])
+def updatecitybyid(cityid):
+    data = request.json
+    return city.updatecity(cityid,data)
 
 #Execute on the terminal
 if __name__ == '__main__':
