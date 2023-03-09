@@ -19,6 +19,7 @@ def getcountries():
 
     return jsonify(data)
 
+#function to get all contries in a given continent
 def getcountrybycontinent(continent):
     results = services.countrybycontinent(continent)
 

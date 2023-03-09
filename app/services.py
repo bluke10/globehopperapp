@@ -21,19 +21,22 @@ def allcountries():
     conn.myconn.close()
     return results
 
-def allcountries(continent):
+def countrybycontinent(continent):
     #open connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
 
+
     #execute SQL
-    mycursor.execute("SELECT * FROM Country WHERE Continent = %s")
+    values = [continent]
+    mysql = "SELECT * FROM Country WHERE Continent = %s;"
+    mycursor.execute(mysql,values)
     results = mycursor.fetchall()
 
     #close connection
     mycursor.close()
     conn.myconn.close()
-    return results
+    return results 
 
 #Gets all records from City table using SQL
 def allcities():

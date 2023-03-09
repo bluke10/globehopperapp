@@ -14,7 +14,8 @@ app = Flask(__name__)
 def getallcountries():
     return country.getcountries()
 
-@app.route('/countries/<continent>')
+#search for all contries in a given continent
+@app.route('/countries/<continent>', methods=['GET'])
 def getcountrybyitscontinent(continent):
     return country.getcountrybycontinent(continent)
 
