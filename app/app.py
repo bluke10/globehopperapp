@@ -19,6 +19,10 @@ def getallcountries():
 def getcountrybyitscontinent(continent):
     return country.getcountrybycontinent(continent)
 
+@app.route('/countries/<int:countryid>/1', methods=['GET'])
+def getcapitalcitybycountry(countryid):
+    return city.getcitybycountry(countryid)
+
 #create a country
 @app.route('/countries', methods=['POST'])
 def createnewcountry():

@@ -38,6 +38,22 @@ def countrybycontinent(continent):
     conn.myconn.close()
     return results 
 
+def getcitybycountryid(countryid):
+    #open connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #execute SQL
+    values = [countryid]
+    mysql = "SELECT * FROM City WHERE CountryId = %s AND Capital = 1;"
+    mycursor.execute(mysql, values)
+    results = mycursor.fetchall()
+    
+    #close connection
+    mycursor.close()
+    conn.myconn.close()
+    return results 
+
 #Gets all records from City table using SQL
 def allcities():
     #open connection

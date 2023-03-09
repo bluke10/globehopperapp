@@ -22,6 +22,9 @@ def getcities():
 
     return jsonify(data)
 
+def getcitybycountry(countryid):
+    result = services.getcitybycountryid(countryid)
+    return jsonify(result)
 
 def createcity(data):
     services.createcity(data)
