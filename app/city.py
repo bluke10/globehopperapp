@@ -3,7 +3,7 @@
 from flask import Flask, request, jsonify
 import services
 
-#function to get all cities
+#function to get all citiess
 def getcities():
     results = services.allcities()
 
